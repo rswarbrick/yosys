@@ -172,7 +172,7 @@ struct EdifBackend : public Backend {
 
 		if (top_module_name.empty())
 			for (auto & mod_it:design->modules_)
-				if (mod_it.second->get_bool_attribute("\\top"))
+				if (mod_it.second->get_bool_attribute(ID::top))
 					top_module_name = mod_it.first.str();
 
 		for (auto module_it : design->modules_)

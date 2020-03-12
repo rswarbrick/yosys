@@ -206,7 +206,7 @@ struct DesignPass : public Pass {
 			if (import_mode) {
 				for (auto module : copy_src_modules)
 				{
-					if (module->get_bool_attribute("\\top")) {
+					if (module->get_bool_attribute(ID::top)) {
 						copy_src_modules.clear();
 						copy_src_modules.push_back(module);
 						break;
@@ -243,7 +243,7 @@ struct DesignPass : public Pass {
 				copy_to_design->modules_[prefix] = mod->clone();
 				copy_to_design->modules_[prefix]->name = prefix;
 				copy_to_design->modules_[prefix]->design = copy_to_design;
-				copy_to_design->modules_[prefix]->attributes.erase("\\top");
+				copy_to_design->modules_[prefix]->attributes.erase(ID::top);
 
 				queue.insert(copy_to_design->modules_[prefix]);
 				done[mod->name] = prefix;
@@ -274,7 +274,7 @@ struct DesignPass : public Pass {
 						copy_to_design->modules_[trg_name] = fmod->clone();
 						copy_to_design->modules_[trg_name]->name = trg_name;
 						copy_to_design->modules_[trg_name]->design = copy_to_design;
-						copy_to_design->modules_[trg_name]->attributes.erase("\\top");
+						copy_to_design->modules_[trg_name]->attributes.erase(ID::top);
 
 						queue.insert(copy_to_design->modules_[trg_name]);
 						done[cell->type] = trg_name;
